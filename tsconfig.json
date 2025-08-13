@@ -12,7 +12,8 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
-      "@/ui": ["src/iu/*"]
+      "@/ui": ["src/ui/*"],
+      "@/commands": ["src/commands/*"]
     }
   },
   "include": ["src/**/*"],
