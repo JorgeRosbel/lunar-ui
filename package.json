@@ -1,0 +1,66 @@
+{
+  "name": "astro-ui",
+  "version": "0.0.1",
+  "description": "Astro UI Components",
+  "main": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "ui": "dist/index.mjs"
+  },
+  "scripts": {
+    "build": "tsup",
+    "build:dev": "npm run build && npm link",
+    "start": "node dist/index.mjs",
+    "watch": "tsup --watch",
+    "format": "prettier --write \"**/*.{js,ts}\"",
+    "check": "prettier --check \"**/*.{js,ts}\"",
+    "prepare": "husky",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest --coverage",
+    "test:v": "vitest --reporter verbose"
+  },
+  "lint-staged": {
+    "*.{js,ts}": [
+      "prettier --write"
+    ]
+  },
+  "lint-staged:options": {
+    "allowEmpty": true
+  },
+  "keywords": [],
+  "author": "JorgeRosbel",
+  "license": "Apache-2.0",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JorgeRosbel/gitzen"
+  },
+  "bugs": {
+    "url": "https://github.com/JorgeRosbel/gitzen/issues"
+  },
+  "homepage": "https://github.com/JorgeRosbel/gitzen#readme",
+  "devDependencies": {
+    "@esbuild-plugins/tsconfig-paths": "^0.1.2",
+    "@types/figlet": "^1.7.0",
+    "@types/inquirer": "^9.0.8",
+    "@types/node": "^24.0.15",
+    "@vitest/ui": "^3.2.4",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.2",
+    "prettier": "^3.6.2",
+    "tsup": "^8.5.0",
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.4",
+    "tsx": "^4.20.3"
+  },
+  "dependencies": {
+    "boxen": "^8.0.1",
+    "chalk": "^5.4.1",
+    "commander": "^12.1.0",
+    "figlet": "^1.8.2",
+    "gradient-string": "^3.0.0",
+    "inquirer": "^12.7.0"
+  }
+}
