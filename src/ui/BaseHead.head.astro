@@ -55,26 +55,3 @@ const { title, description, image = FallbackImage } = Astro.props as Props;
 <meta property="twitter:image" content={new URL(image.src, Astro.url)} />
 
 
-<script>
-  function initializeDarkModeToggle() {
-    const e = document.documentElement;
-    const theme = localStorage.getItem('theme') || null;
-
-    if (theme) {
-      e.className = theme;
-    } else {
-      e.classList.remove('dark');
-    }
-
-    const D = document.getElementById('dark-toggle');
-
-    if (D) {
-      D.onclick = () => {
-        e.classList.toggle('dark');
-        localStorage.setItem('theme', e.className.length > 0 ? e.className : '');
-      };
-    }
-  }
-
-  initializeDarkModeToggle();
-</script>`
