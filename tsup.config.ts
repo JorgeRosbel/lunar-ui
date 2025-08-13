@@ -14,5 +14,8 @@ export default defineConfig({
       js: '.mjs',
     };
   },
+  banner: {
+    js: '#!/usr/bin/env node',
+  },
   esbuildPlugins: [TsconfigPathsPlugin({})],
 });
