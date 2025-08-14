@@ -35,7 +35,8 @@ const { links, title, logo } = Astro.props as IHeader;
             <p class="font-bold text-xl text-black dark:text-white">{title}</p>
         </a>
 
-        <ul class="md:flex z-50 md:gap-5 md:border-none font-semibold md:items-center md:static md:translate-0 md:flex-row md:w-max justify-center bg-white dark:bg-black
+        <nav>
+            <ul class="md:flex z-50 md:gap-5 md:border-none font-semibold md:items-center md:static md:translate-0 md:flex-row md:w-max justify-center bg-white dark:bg-black
         w-[100vw] gap-2 absolute bottom-0 translate-y-[100%] left-0 flex-col py-4 items-start px-5 hidden border-y border-black/16 dark:border-white/10">
             {
                 links.map((item) => (
@@ -48,6 +49,7 @@ const { links, title, logo } = Astro.props as IHeader;
                 ))
             }
         </ul>
+        </nav>
 
         <div class="flex items-center justify-center ga-5">
             <button
@@ -126,19 +128,25 @@ const { links, title, logo } = Astro.props as IHeader;
     const D = document.getElementById('dark-toggle');
     const menu = document.querySelector('header ul');
     const menuBtn = document.getElementById('menu-btn');
+    const link = document.querySelectorAll('header nav ul li')
 
     if (D && menu && menuBtn) {
       D.onclick = () => {
         e.classList.toggle('dark');
         localStorage.setItem('theme', e.className.length > 0 ? e.className : '');
       };
-     
-      menuBtn.onclick = () => {
+
+      const handler = () =>{
         const isOpen = menu.classList.toggle("hidden");
         menuBtn.setAttribute("aria-expanded", String(!isOpen));
       }
+     
+      menuBtn.onclick = () => handler();
+
+      link.forEach(item => item.addEventListener('click', () => handler() ))
     }
   }
 
   initialize();
-</script>`;
+</script>
+`;
