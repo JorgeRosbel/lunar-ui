@@ -41,7 +41,7 @@ const { links, title, logo } = Astro.props as IHeader;
             {
                 links.map((item) => (
                     <li
-                        class=" text-black/70 dark:text-white/80 transition-all duration-200 md:hover:bg-transparent md:p-0 md:w-max
+                        class=" text-black/70 dark:text-white/80 transition-all duration-200 md:hover:bg-transparent md:dark:hover:bg-transparent md:p-0 md:w-max
         hover:text-black dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/10 w-full p-2 cursor-pointer"
                     >
                         <a aria-label={item.label} href={item.path}>{item.label}</a>
