@@ -1,16 +1,20 @@
-import { readFile, mkdir, writeFile } from 'fs/promises';
+import { mkdir, writeFile } from 'fs/promises';
 import fs from 'fs';
 import { join } from 'path';
+import { components } from '@/ui/sender';
+import { created, fail } from '@/utils/logs';
 
 export const add = async () => {
-  const name = process.argv[3];
+  const name = process.argv[3] as keyof typeof components;
 
-  !name && process.exit(1);
+  if (!name) {
+    fail('Missing component name!');
+    process.exit(1);
+  }
 
-  const path = join(process.cwd(), `src/ui/${name}.head.astro`);
+  const content = components[name];
 
-  const content = await readFile(path, 'utf-8');
-  const dir = join(process.cwd(), 'components/ui');
+  const dir = join(process.cwd(), 'src/.generated');
 
   if (!fs.existsSync(dir)) {
     await mkdir(dir);
@@ -18,5 +22,5 @@ export const add = async () => {
 
   await writeFile(join(dir, `${name}.astro`), content);
 
-  console.log(`Agregad con extio: ${name}.astro`);
+  created(name);
 };
