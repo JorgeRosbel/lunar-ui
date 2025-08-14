@@ -35,8 +35,8 @@ const { links, title, logo } = Astro.props as IHeader;
             <p class="font-bold text-xl text-black dark:text-white">{title}</p>
         </a>
 
-        <ul class="flex md:gap-5 font-semibold md:items-center md:static md:translate-0 md:flex-row md:w-max justify-center bg-white dark:bg-black
-        w-[100vw] gap-2 absolute bottom-0 translate-y-[100%] left-0 flex-col py-4 items-start px-5">
+        <ul class="md:flex z-50 md:gap-5 md:border-none font-semibold md:items-center md:static md:translate-0 md:flex-row md:w-max justify-center bg-white dark:bg-black
+        w-[100vw] gap-2 absolute bottom-0 translate-y-[100%] left-0 flex-col py-4 items-start px-5 hidden border-y border-black/16 dark:border-white/10">
             {
                 links.map((item) => (
                     <li
@@ -78,33 +78,42 @@ const { links, title, logo } = Astro.props as IHeader;
                 </svg>
 
                 <svg
-                    class="dark:text-white text-black dark:hidden block"
-                    viewBox="0 0 24 24"
-                    width="32"
-                    height="32"
-                    xmlns="http://www.w3.org/2000/svg"
-                    aria-hidden="true"
-                >
-                    <path
-                        fill="currentColor"
-                        d="M21 12.79A9 9 0 0 1 11.21 3
-            7 7 0 1 0 21 12.79z"
-                    ></path>
-                </svg>
+                class="dark:text-white text-black dark:hidden block"
+                viewBox="0 0 24 24"
+                width="26"
+                height="26"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+            >
+                <path
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 1 0 9.8 9.8z"
+                />
+            </svg>
+
             </button>
 
-            <button class="flex flex-col gap-1 cursor-pointer transition-all duration-200 hover:dark:bg-white/20 hover:bg-black/3 p-2">
-                <div class="h-1 w-6 bg-black dark:bg-white"></div>
-                <div class="h-1 w-6 bg-black dark:bg-white"></div>
-                <div class="h-1 w-6 bg-black dark:bg-white"></div>
-            </button>
+        <button 
+            id="menu-btn" 
+            class="flex flex-col md:hidden gap-1 p-2 cursor-pointer transition-colors duration-200 hover:bg-black/5 dark:hover:bg-white/20"
+            aria-label="Open menu" 
+            aria-expanded="false"
+        >
+            <span class="block h-1 w-6 bg-black dark:bg-white transition-all"></span>
+            <span class="block h-1 w-6 bg-black dark:bg-white transition-all"></span>
+            <span class="block h-1 w-6 bg-black dark:bg-white transition-all"></span>
+        </button>
 
         </div>
     </div>
 </header>
 
 <script>
-  function initializeDarkModeToggle() {
+  function initialize() {
     const e = document.documentElement;
     const theme = localStorage.getItem('theme') || null;
 
@@ -115,16 +124,22 @@ const { links, title, logo } = Astro.props as IHeader;
     }
 
     const D = document.getElementById('dark-toggle');
+    const menu = document.querySelector('header ul');
+    const menuBtn = document.getElementById('menu-btn');
 
-    if (D) {
+    if (D && menu && menuBtn) {
       D.onclick = () => {
         e.classList.toggle('dark');
         localStorage.setItem('theme', e.className.length > 0 ? e.className : '');
       };
+     
+      menuBtn.onclick = () => {
+        const isOpen = menu.classList.toggle("hidden");
+        menuBtn.setAttribute("aria-expanded", String(!isOpen));
+      }
     }
   }
 
-  initializeDarkModeToggle();
+  initialize();
 </script>
-
 `;
