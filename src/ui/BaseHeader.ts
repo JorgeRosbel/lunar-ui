@@ -22,7 +22,7 @@ const { links, title, logo } = Astro.props as IHeader;
                 logo && (
                     <Image
                         src={logo.metadata}
-                        alt="Company logo"
+                        alt={logo.alt}
                         width={40}
                         height={logo.metadata.height}
                         format="png"
@@ -141,5 +141,4 @@ const { links, title, logo } = Astro.props as IHeader;
   }
 
   initialize();
-</script>
-`;
+</script>`;
