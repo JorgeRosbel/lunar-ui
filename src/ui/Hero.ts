@@ -1,0 +1,52 @@
+export const Hero = `---
+import { Image } from "astro:assets";
+
+interface IHero {
+    h1:string;
+    h2:string;
+    link_1: { label:string, path:string };
+    link_2: { label:string, path:string }
+    image:{ metadata:ImageMetadata, alt:string }
+}
+
+const { h1, h2, link_1, link_2, image  } = Astro.props as IHero
+---
+
+<section class="w-full min-h-screen flex items-center justify-center bg-white dark:bg-black">
+     
+    <div class="flex w-full items-center justify-center max-w-[1200px] px-4">
+        <div class="w-full flex flex-col items-start justify-center px-5 gap-4">
+            <p class="text-black mt-8 dark:text-white border border-black/30 dark:border-white/30 rounded py-2 px-3 text-[0.9rem] font-semibold uppercase">Geofísica avanzada</p>
+            <h1 class="text-5xl md:text-6xl max-w-[500px] uppercase font-extrabold text-start leading-[55px] text-black dark:text-white ">{h1}</h1>
+            <h2 class="text-black/80 dark:text-white/80 max-w-[800px] text-xl md:text-2xl text-start">{h2}</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 text-black/80 dark:text-white/80 gap-6 w-full md:max-w-[400px]">
+                <a 
+                    class="dark:bg-white uppercase bg-black text-white dark:text-black font-semibold text-center py-2 rounded transition-all duration-200
+                    hover:bg-black/90 dark:hover:bg-white/90" 
+                    aria-label={link_1.label} 
+                    href={link_1.path}>
+                    {link_1.label}
+                </a>
+                <a 
+                    class="dark:bg-white/5 uppercase font-semibold text-center py-2 rounded border dark:border-white/10 border-black/15 transition-all duration-200
+                    hover:bg-black/3 dark:hover:bg-white/8" 
+                    aria-label={link_2.label} 
+                    href={link_2.path}>
+                    {link_2.label}
+                </a>
+            </div>
+        </div>
+        <div class="h-[400px] w-full bg-gray-300/10 overflow-hidden items-center justify-center hidden md:flex">
+            <Image
+                src={image.metadata}
+                alt={image.alt}
+                width={500}
+                height={image.metadata.height}
+                format="webp"
+                quality={80}
+                loading="eager"
+                decoding="sync"
+                />
+        </div>
+    </div>
+</section>`;
