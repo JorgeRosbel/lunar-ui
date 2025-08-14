@@ -13,7 +13,8 @@
     "paths": {
       "@/*": ["src/*"],
       "@/ui": ["src/ui/*"],
-      "@/commands": ["src/commands/*"]
+      "@/commands": ["src/commands/*"],
+      "@/utils": ["src/utils/*"]
     }
   },
   "include": ["src/**/*"],
