@@ -1,18 +1,18 @@
----
+export const BaseHead = `---
+// Replace this line if your global.css is at a different path
 import '../styles/global.css';
-import FallbackImage from '../assets/your-image-here.jpg';
+//
 import type { ImageMetadata } from 'astro';
-import { SITE_TITLE } from '../consts';
 
 interface Props {
   title: string;
   description: string;
-  image?: ImageMetadata;
+  image: ImageMetadata;
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-const { title, description, image = FallbackImage } = Astro.props as Props;
+const { title, description, image } = Astro.props as Props;
 ---
 
 <!-- Global Metadata -->
@@ -23,7 +23,7 @@ const { title, description, image = FallbackImage } = Astro.props as Props;
 <link
   rel="alternate"
   type="application/rss+xml"
-  title={SITE_TITLE}
+  title={title}
   href={new URL('rss.xml', Astro.site)}
 />
 <meta name="generator" content={Astro.generator} />
@@ -53,5 +53,4 @@ const { title, description, image = FallbackImage } = Astro.props as Props;
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image.src, Astro.url)} />
-
-
+`;
