@@ -1,4 +1,4 @@
-export const Hero = `---
+export const DualColumnHero = `---
 import { Image } from "astro:assets";
 
 interface IHero {

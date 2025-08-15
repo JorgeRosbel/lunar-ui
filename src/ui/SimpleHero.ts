@@ -1,4 +1,4 @@
-export const BaseHero = `---
+export const SimpleHero = `---
 interface IHero {
     h1:string;
     h2:string;

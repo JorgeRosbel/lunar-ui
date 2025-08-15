@@ -1,4 +1,4 @@
-export const BaseHeader = `---
+export const ResponsiveHeader = `---
 import { Image } from "astro:assets";
 
 type TLink = { label: string; path: string };

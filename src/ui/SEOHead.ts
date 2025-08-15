@@ -1,4 +1,4 @@
-export const BaseHead = `---
+export const SEOHead = `---
 // Replace this line if your global.css is at a different path
 import '../styles/global.css';
 //

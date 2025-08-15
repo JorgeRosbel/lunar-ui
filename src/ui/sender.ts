@@ -1,9 +1,11 @@
-import { BaseHead } from './BaseHead';
-import { BaseHeader } from './BaseHeader';
-import { BaseHero } from './BaseHero';
+import { SEOHead } from './SEOHead';
+import { ResponsiveHeader } from './ResponsiveHeader';
+import { SimpleHero } from './SimpleHero';
+import { DualColumnHero } from './DualColumnHero';
 
 export const components = {
-  BaseHead: BaseHead,
-  BaseHeader: BaseHeader,
-  BaseHero: BaseHero,
+  SEOHead: SEOHead,
+  ResponsiveHeader: ResponsiveHeader,
+  SimpleHero: SimpleHero,
+  DualColumnHero: DualColumnHero,
 };
