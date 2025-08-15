@@ -3,6 +3,7 @@ import { ResponsiveHeader } from './ResponsiveHeader';
 import { SimpleHero } from './SimpleHero';
 import { DualColumnHero } from './DualColumnHero';
 import { StatsCards } from './StatsCards';
+import { GlowStatsCards } from './GlowStatsCards';
 
 export const components = {
   SEOHead: SEOHead,
@@ -10,4 +11,5 @@ export const components = {
   SimpleHero: SimpleHero,
   DualColumnHero: DualColumnHero,
   StatsCards: StatsCards,
+  GlowStatsCards: GlowStatsCards,
 };
