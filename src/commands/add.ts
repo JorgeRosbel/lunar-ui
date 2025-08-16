@@ -5,22 +5,27 @@ import { components } from '@/ui/sender';
 import { created, fail } from '@/utils/logs';
 
 export const add = async () => {
-  const name = process.argv[3] as keyof typeof components;
+  try {
+    const name = process.argv[3] as keyof typeof components;
 
-  if (!name) {
-    fail('Missing component name!');
+    if (!name) {
+      fail('Missing component name!');
+      process.exit(1);
+    }
+
+    const content = components[name];
+
+    const dir = join(process.cwd(), 'src/.generated');
+
+    if (!fs.existsSync(dir)) {
+      await mkdir(dir);
+    }
+
+    await writeFile(join(dir, `${name}.astro`), content);
+
+    created(name);
+  } catch (error) {
+    fail(error as string);
     process.exit(1);
   }
-
-  const content = components[name];
-
-  const dir = join(process.cwd(), 'src/.generated');
-
-  if (!fs.existsSync(dir)) {
-    await mkdir(dir);
-  }
-
-  await writeFile(join(dir, `${name}.astro`), content);
-
-  created(name);
 };
