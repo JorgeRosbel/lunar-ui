@@ -20,7 +20,7 @@ const { h2, h3, cards  } = Astro.props as IServicesForms;
     <h2 class="text-3xl font-semibold text-black dark:text-white">{h2}</h2>
     <h3 class="text-[1.2rem] text-black/80 dark:text-white/80 max-w-[700px] text-center">{h3}</h3>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 px-4 gap-8 w-full max-w-[1200px] my-5">
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 px-4 gap-8 w-full max-w-[1200px] my-5">
         {
             cards.map(card => 
                 <article

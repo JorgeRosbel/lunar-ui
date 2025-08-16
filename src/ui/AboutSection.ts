@@ -1,0 +1,102 @@
+export const AboutSection = `---
+export interface Props {
+  type?: "person" | "company"
+  name: string
+  title: string
+  description: string
+  mission?: string
+  values?: string[]
+  highlights?: string[]
+  experience?: string
+  location?: string
+}
+
+const {
+  type = "company",
+  name,
+  title,
+  description,
+  mission,
+  values = [],
+  highlights = [],
+  experience,
+  location,
+} = Astro.props
+---
+
+<section class="py-16 bg-white dark:bg-black">
+  <div class="container mx-auto px-4">
+    <div class="max-w-4xl mx-auto">
+      <!-- Header -->
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold text-black dark:text-white mb-4">
+          {type === "person" ? "Sobre Mí" : "Sobre Nosotros"}
+        </h2>
+        <div class="w-20 h-1 bg-black dark:bg-white mx-auto mb-6"></div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <!-- Left Column - Text Content -->
+        <div class="space-y-6">
+          <div>
+            <h3 class="text-2xl font-bold text-black dark:text-white mb-2">{name}</h3>
+            <p class="text-lg text-black/70 dark:text-white/70 mb-4">{title}</p>
+            <p class="text-black dark:text-white leading-relaxed">{description}</p>
+          </div>
+
+          {mission && (
+            <div>
+              <h4 class="text-xl font-semibold text-black dark:text-white mb-3">
+                {type === "person" ? "Mi Misión" : "Nuestra Misión"}
+              </h4>
+              <p class="text-black/70 dark:text-white/70 leading-relaxed">{mission}</p>
+            </div>
+          )}
+
+          {experience && (
+            <div class="flex items-center gap-4 text-sm text-black/70 dark:text-white/70">
+              <span>📍 {location}</span>
+              <span>⏱️ {experience}</span>
+            </div>
+          )}
+        </div>
+
+        <!-- Right Column - Highlights & Values -->
+        <div class="space-y-8">
+          {highlights.length > 0 && (
+            <div>
+              <h4 class="text-xl font-semibold text-black dark:text-white mb-4">
+                {type === "person" ? "Lo Que Me Destaca" : "Lo Que Nos Destaca"}
+              </h4>
+              <div class="space-y-4">
+                {highlights.map((highlight) => (
+                  <div class="p-4 border border-black/20 dark:border-white/20 rounded-lg bg-black/5 dark:bg-white/5">
+                    <p class="text-black dark:text-white">{highlight}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <!-- Values -->
+          {values.length > 0 && (
+            <div>
+              <h4 class="text-xl font-semibold text-black dark:text-white mb-4">
+                {type === "person" ? "Mis Valores" : "Nuestros Valores"}
+              </h4>
+              <div class="space-y-3">
+                {values.map((value) => (
+                  <div class="flex items-center gap-3">
+                    <div class="w-2 h-2 bg-black dark:bg-white rounded-full flex-shrink-0"></div>
+                    <span class="text-black/70 dark:text-white/70">{value}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>`;
