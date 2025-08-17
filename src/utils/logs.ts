@@ -1,17 +1,23 @@
 import chalk from 'chalk';
+import boxen from 'boxen';
 
 export const created = (name: string) => {
-  console.log(chalk.green(`Successfully added: ${chalk.blue(`${name}.astro`)}`));
+  console.log(
+    boxen(chalk.green(`🌕 Successfully added: ${chalk.magenta(`${name}.astro`)} component 🌕`), {
+      padding: 1,
+      borderColor: 'magenta',
+    })
+  );
 };
 
 export const success = (content: string) => {
-  console.log(chalk.green(content));
+  console.log(boxen(chalk.green(`🌕 ${content} 🌕`), { padding: 1, borderColor: 'green' }));
 };
 
 export const fail = (content: string) => {
-  console.log(chalk.red(content));
+  console.log(boxen(chalk.red(`🌕 ${content} 🌕`), { padding: 1, borderColor: 'red' }));
 };
 
 export const warn = (content: string) => {
-  console.log(chalk.yellow(content));
+  console.log(boxen(chalk.yellow(`🌕 ${content} 🌕`), { padding: 1, borderColor: 'yellow' }));
 };
