@@ -7,6 +7,7 @@ import { GlowStatsCards } from './GlowStatsCards';
 import { PricingCards } from './PricingCards';
 import { AboutSection } from './AboutSection';
 import { ServicesGrid } from './ServicesGrid';
+import { AnimatedHero } from './AnimatedHero';
 
 export const components = {
   SEOHead: SEOHead,
@@ -18,4 +19,5 @@ export const components = {
   PricingCards: PricingCards,
   AboutSection: AboutSection,
   ServicesGrid: ServicesGrid,
+  AnimatedHero: AnimatedHero,
 };
