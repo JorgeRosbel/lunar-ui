@@ -6,14 +6,19 @@ import { created, fail } from '@/utils/logs';
 
 export const add = async () => {
   try {
-    const name = process.argv[3] as keyof typeof components;
+    const name = process.argv[3];
 
     if (!name) {
       fail('Missing component name!');
       process.exit(1);
     }
 
-    const content = components[name];
+    const content = components.get(name);
+
+    if (!content) {
+      fail('Invalid component name');
+      process.exit(1);
+    }
 
     const dir = join(process.cwd(), 'src/.generated');
 

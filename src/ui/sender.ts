@@ -9,15 +9,15 @@ import { AboutSection } from './AboutSection';
 import { ServicesGrid } from './ServicesGrid';
 import { AnimatedHero } from './AnimatedHero';
 
-export const components = {
-  SEOHead: SEOHead,
-  ResponsiveHeader: ResponsiveHeader,
-  SimpleHero: SimpleHero,
-  DualColumnHero: DualColumnHero,
-  StatsCards: StatsCards,
-  GlowStatsCards: GlowStatsCards,
-  PricingCards: PricingCards,
-  AboutSection: AboutSection,
-  ServicesGrid: ServicesGrid,
-  AnimatedHero: AnimatedHero,
-};
+export const components = new Map([
+  ['SEOHead', SEOHead],
+  ['ResponsiveHeader', ResponsiveHeader],
+  ['SimpleHero', SimpleHero],
+  ['DualColumnHero', DualColumnHero],
+  ['StatsCards', StatsCards],
+  ['GlowStatsCards', GlowStatsCards],
+  ['PricingCards', PricingCards],
+  ['AboutSection', AboutSection],
+  ['ServicesGrid', ServicesGrid],
+  ['AnimatedHero', AnimatedHero],
+]);
