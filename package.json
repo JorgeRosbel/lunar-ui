@@ -19,7 +19,8 @@
     "test:run": "vitest run",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest --coverage",
-    "test:v": "vitest --reporter verbose"
+    "test:v": "vitest --reporter verbose",
+    "push": "git add . && gitzen commit -y && git push"
   },
   "lint-staged": {
     "*.{js,ts}": [
