@@ -4,19 +4,20 @@ import { Image } from "astro:assets";
 interface IHero {
     h1:string;
     h2:string;
+    extra_text:string;
     link_1: { label:string, path:string };
     link_2: { label:string, path:string }
     image:{ metadata:ImageMetadata, alt:string }
 }
 
-const { h1, h2, link_1, link_2, image  } = Astro.props as IHero
+const { h1, h2, extra_text, link_1, link_2, image  } = Astro.props as IHero
 ---
 
 <section class="w-full min-h-screen flex items-center justify-center bg-white dark:bg-black">
      
     <div class="flex w-full items-center justify-center max-w-[1200px] px-4">
         <div class="w-full flex flex-col items-start justify-center px-5 gap-4">
-            <p class="text-black mt-8 dark:text-white border border-black/30 dark:border-white/30 rounded py-2 px-3 text-[0.9rem] font-semibold uppercase">Geofísica avanzada</p>
+            <p class="text-black mt-8 dark:text-white border border-black/30 dark:border-white/30 rounded py-2 px-3 text-[0.9rem] font-semibold uppercase">{extra_text}</p>
             <h1 class="text-5xl md:text-6xl max-w-[500px] uppercase font-extrabold text-start leading-[55px] text-black dark:text-white ">{h1}</h1>
             <h2 class="text-black/80 dark:text-white/80 max-w-[800px] text-xl md:text-2xl text-start">{h2}</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 text-black/80 dark:text-white/80 gap-6 w-full md:max-w-[400px]">
