@@ -8,6 +8,7 @@ import { PricingCards } from './PricingCards';
 import { AboutSection } from './AboutSection';
 import { ServicesGrid } from './ServicesGrid';
 import { AnimatedHero } from './AnimatedHero';
+import { SectionDivider } from './SectionDivider';
 
 export const components = new Map([
   ['SEOHead', SEOHead],
@@ -20,4 +21,5 @@ export const components = new Map([
   ['AboutSection', AboutSection],
   ['ServicesGrid', ServicesGrid],
   ['AnimatedHero', AnimatedHero],
+  ['SectionDivider', SectionDivider],
 ]);
