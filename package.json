@@ -19,7 +19,7 @@
     "test:ui": "vitest --ui",
     "test:coverage": "vitest --coverage",
     "test:v": "vitest --reporter verbose",
-    "push": "git add . && gitzen commit -y && git push"
+    "push": "git add . && gitzen commit -y && git push && npm run build:dev"
   },
   "lint-staged": {
     "*.{js,ts}": [
