@@ -9,6 +9,7 @@ import { AboutSection } from './AboutSection';
 import { ServicesGrid } from './ServicesGrid';
 import { AnimatedHero } from './AnimatedHero';
 import { SectionDivider } from './SectionDivider';
+import { ProjectsGrid } from './ProjectsGrid';
 
 export const components = new Map([
   ['SEOHead', SEOHead],
@@ -22,4 +23,5 @@ export const components = new Map([
   ['ServicesGrid', ServicesGrid],
   ['AnimatedHero', AnimatedHero],
   ['SectionDivider', SectionDivider],
+  ['ProjectsGrid', ProjectsGrid],
 ]);
