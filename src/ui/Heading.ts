@@ -1,0 +1,46 @@
+export const Heading = `---
+
+// 📦 npm install -D tailwind-merge 📦
+import { twMerge } from "tailwind-merge";
+
+
+export interface IAdvancedHeadingProps {
+  heading: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+  className?: string;
+}
+
+const { heading, className } = Astro.props as IAdvancedHeadingProps;
+---
+
+<>
+  {heading === "h1" && (
+    <h1 class={twMerge("text-3xl md:text-5xl font-bold text-black dark:text-white", className || "")}>
+      <slot />
+    </h1>
+  )}
+  {heading === "h2" && (
+    <h2 class={twMerge("text-2xl md:text-4xl font-semibold text-black dark:text-white", className || "")}>
+      <slot />
+    </h2>
+  )}
+  {heading === "h3" && (
+    <h3 class={twMerge("text-xl md:text-3xl font-medium text-black dark:text-white", className || "")}>
+      <slot />
+    </h3>
+  )}
+  {heading === "h4" && (
+    <h4 class={twMerge("text-lg md:text-2xl font-medium text-black dark:text-white", className || "")}>
+      <slot />
+    </h4>
+  )}
+  {heading === "h5" && (
+    <h5 class={twMerge("text-base md:text-xl font-normal text-black dark:text-white", className || "")}>
+      <slot />
+    </h5>
+  )}
+  {heading === "h6" && (
+    <h6 class={twMerge("text-sm md:text-lg font-normal text-black dark:text-white", className || "")}>
+      <slot />
+    </h6>
+  )}
+</>`;
