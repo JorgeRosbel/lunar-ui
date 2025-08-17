@@ -1,7 +1,7 @@
 import { program } from 'commander';
 import { add } from '@/commands/add';
 
-program.name('ui');
+program.name('lui');
 
 program.command('add').action(() => {
   add();
