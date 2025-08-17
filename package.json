@@ -1,5 +1,5 @@
 {
-  "name": "lunar-ui",
+  "name": "@primarix/lunar-ui",
   "version": "0.0.1",
   "description": "Astro UI Components",
   "main": "dist/index.mjs",
