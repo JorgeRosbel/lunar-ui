@@ -10,7 +10,6 @@
   "scripts": {
     "build": "tsup",
     "build:dev": "npm run build && npm link",
-    "start": "node dist/index.mjs",
     "watch": "tsup --watch",
     "format": "prettier --write \"**/*.{js,ts}\"",
     "check": "prettier --check \"**/*.{js,ts}\"",
