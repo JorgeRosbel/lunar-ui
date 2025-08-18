@@ -35,12 +35,12 @@
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JorgeRosbel/lunar-ui"
+    "url": "git+https://github.com/Primarix/lunar-ui"
   },
   "bugs": {
-    "url": "https://github.com/JorgeRosbel/lunar-ui/issues"
+    "url": "https://github.com/Primarix/lunar-ui/issues"
   },
-  "homepage": "https://github.com/JorgeRosbel/lunar-ui#readme",
+  "homepage": "https://github.com/Primarix/lunar-ui#readme",
   "devDependencies": {
     "@esbuild-plugins/tsconfig-paths": "^0.1.2",
     "@types/figlet": "^1.7.0",
