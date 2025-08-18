@@ -1,18 +1,24 @@
-# 🌕 lunar-ui
+# 🌕 Lunar-UI
 
 A modern collection of ready-to-use Astro components. Copy, paste, and customize with zero dependencies.
 
 > ⚠️ **MVP Notice**: This library is currently in active development as a Minimum Viable Product. Features and APIs may change as we iterate toward a stable release.
 
-## Overview
+## Why lunar-ui?
 
-lunar-ui is a component library inspired by shadcn/ui but specifically designed for Astro. Unlike traditional component libraries, lunar-ui gives you the actual source code of each component, allowing you to:
+Building modern web applications shouldn't mean wrestling with heavy dependencies, complex configurations, or being locked into rigid design systems. lunar-ui solves the pain points that developers face daily:
 
-- ✅ **Zero Dependencies**: No external packages required
-- ✅ **Zero Configuration**: Ready to use out of the box
-- ✅ **Zero Installation**: Copy components directly to your project
-- ✅ **Full Control**: Edit and customize the source code as needed
-- ✅ **Astro Optimized**: Built specifically for the Astro framework
+**🚀 Rapid Prototyping**: Skip the tedious setup phase and jump straight into building. Need a hero section? Add it in seconds, not hours.
+
+**🎨 Complete Design Control**: Unlike traditional component libraries that force you into their design decisions, lunar-ui gives you the raw source code. Want to change that button color or adjust spacing? Just edit the code directly.
+
+**📦 Zero Dependency Hell**: Tired of installing dozens of packages just to get a simple component working? lunar-ui components are self-contained and dependency-free, eliminating version conflicts and reducing bundle size.
+
+**⚡ Performance First**: No runtime overhead, no JavaScript bloat. Since you get the actual component code, you can optimize it specifically for your use case.
+
+**🔧 Framework Alignment**: Built specifically for Astro's component model and philosophy. No more trying to adapt React or Vue components that don't quite fit.
+
+Whether you're a solo developer building a landing page, a startup needing rapid iteration, or an agency handling multiple client projects, lunar-ui empowers you to move fast without sacrificing quality or control.
 
 ## Installation
 
@@ -172,8 +178,9 @@ npx @primarix/lunar-ui add SEOHead
 
 1. **Choose a Component**: Browse the available components above
 2. **Run the Command**: Use either `lui add [component-name]` or the npx version
-3. **Customize**: The component source code will be added to your project, ready for customization
-4. **Style**: Modify the component to match your design requirements
+3. **Generated Folder**: Components are automatically created in a `.generated/` folder in your project
+4. **Customize**: The component source code will be added to your project, ready for customization
+5. **Style**: Modify the component to match your design requirements
 
 ## Component Philosophy
 
@@ -196,6 +203,7 @@ As this is an MVP in active development, we welcome feedback and contributions. 
 - 📚 Interactive documentation site
 - 🔧 Advanced CLI features
 
----
+## Disclaimer
 
-*lunar-ui is an independent project and is not affiliated with the official Astro team.*
+> **⚠️ Important Notice**  
+> lunar-ui is an independent project and is not affiliated with the official Astro team.
