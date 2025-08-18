@@ -29,7 +29,7 @@
   "lint-staged:options": {
     "allowEmpty": true
   },
-  "keywords": [],
+  "keywords": ["cli","astro-components","astro-ui", "astro"],
   "author": "JorgeRosbel",
   "license": "Apache-2.0",
   "type": "module",
