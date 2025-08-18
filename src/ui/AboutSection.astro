@@ -1,4 +1,4 @@
-export const AboutSection = `---
+---
 export interface Props {
   type?: "person" | "company"
   name: string
@@ -70,7 +70,7 @@ const {
                 {type === "person" ? "Lo Que Me Destaca" : "Lo Que Nos Destaca"}
               </h4>
               <div class="space-y-4">
-                {highlights.map((highlight) => (
+                {highlights.map((highlight: unknown) => (
                   <div class="p-4 border border-black/20 dark:border-white/20 rounded-lg bg-black/5 dark:bg-white/5">
                     <p class="text-black dark:text-white">{highlight}</p>
                   </div>
@@ -86,7 +86,7 @@ const {
                 {type === "person" ? "Mis Valores" : "Nuestros Valores"}
               </h4>
               <div class="space-y-3">
-                {values.map((value) => (
+                {values.map((value: unknown) => (
                   <div class="flex items-center gap-3">
                     <div class="w-2 h-2 bg-black dark:bg-white rounded-full flex-shrink-0"></div>
                     <span class="text-black/70 dark:text-white/70">{value}</span>
@@ -99,4 +99,4 @@ const {
       </div>
     </div>
   </div>
-</section>`;
+</section>

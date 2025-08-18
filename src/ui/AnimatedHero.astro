@@ -1,4 +1,4 @@
-export const AnimatedHero = `---
+---
 export type LinkButton = { label: string; path: string };
 
 export interface IAnimatedHeroProps {
@@ -73,7 +73,7 @@ const { h1, h2, primaryButton, secondaryButton } = Astro.props as IAnimatedHeroP
         private animationId: number | null = null;
         private isDark: boolean = false;
 
-        constructor(particlesNumb: number) {
+        constructor() {
             this.canvas = document.getElementById(
                 "particles-canvas",
             ) as HTMLCanvasElement;
@@ -192,7 +192,6 @@ const { h1, h2, primaryButton, secondaryButton } = Astro.props as IAnimatedHeroP
     }
 
     document.addEventListener("DOMContentLoaded", () => {
-        new AnimatedHero(50);
+        new AnimatedHero();
     });
 </script>
-`;

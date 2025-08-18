@@ -1,8 +1,8 @@
 import { mkdir, writeFile } from 'fs/promises';
 import fs from 'fs';
-import { join } from 'path';
-import { components } from '@/ui/sender';
+import { join, dirname } from 'path';
 import { created, fail } from '@/utils/logs';
+import { fileURLToPath } from 'url';
 
 export const add = async () => {
   try {
@@ -13,7 +13,11 @@ export const add = async () => {
       process.exit(1);
     }
 
-    const content = components.get(name);
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = dirname(__filename);
+    const componentPath = join(__dirname, 'ui', `${name}.astro`);
+
+    const content = fs.readFileSync(componentPath, 'utf-8');
 
     if (!content) {
       fail('Invalid component name');
