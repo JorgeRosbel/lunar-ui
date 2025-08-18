@@ -2,6 +2,8 @@
 
 A modern collection of ready-to-use Astro components. Copy, paste, and customize with zero dependencies.
 
+![banner](https://github.com/JorgeRosbel/lunar-ui/raw/main/docs/AnimatedHero.png)
+
 > ⚠️ **MVP Notice**: This library is currently in active development as a Minimum Viable Product. Features and APIs may change as we iterate toward a stable release.
 
 ## Why lunar-ui?
