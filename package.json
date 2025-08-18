@@ -35,7 +35,7 @@
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Primarixlunar-ui"
+    "url": "git+https://github.com/Primarix/lunar-ui"
   },
   "bugs": {
     "url": "https://github.com/Primarix/lunar-ui/issues"
