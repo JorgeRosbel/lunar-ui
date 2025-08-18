@@ -1,4 +1,4 @@
-export const SEOHead = `---
+---
 // Replace this line if your global.css is at a different path
 import '../styles/global.css';
 //
@@ -53,4 +53,3 @@ const { title, description, image } = Astro.props as Props;
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image.src, Astro.url)} />
-`;
