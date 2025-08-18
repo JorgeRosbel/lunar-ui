@@ -2,196 +2,176 @@
 export type LinkButton = { label: string; path: string };
 
 export interface IAnimatedHeroProps {
-    h1: string;
-    h2: string;
-    primaryButton: LinkButton;
-    secondaryButton: LinkButton;
+  h1: string;
+  h2: string;
+  primaryButton: LinkButton;
+  secondaryButton: LinkButton;
 }
 
 const { h1, h2, primaryButton, secondaryButton } = Astro.props as IAnimatedHeroProps;
 ---
 
 <div
-    id="animated-hero"
-    class="relative min-h-screen overflow-hidden transition-colors duration-500 bg-white dark:bg-black"
+  id="animated-hero"
+  class="relative min-h-screen overflow-hidden transition-colors duration-500 bg-white dark:bg-black"
 >
-    <canvas
-        id="particles-canvas"
-        class="absolute inset-0 w-full h-full"
-        style="z-index: 1;"></canvas>
+  <canvas id="particles-canvas" class="absolute inset-0 w-full h-full" style="z-index: 1;"></canvas>
 
-    <div
-        class="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 text-center"
-    >
-        <div class="max-w-4xl mx-auto space-y-8">
-            <h1
-                class="text-6xl md:text-8xl font-bold tracking-tight transition-colors duration-500 text-black dark:text-white max-w-[600px]"
-            >
-                {h1}
-            </h1>
+  <div
+    class="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 text-center"
+  >
+    <div class="max-w-4xl mx-auto space-y-8">
+      <h1
+        class="text-6xl md:text-8xl font-bold tracking-tight transition-colors duration-500 text-black dark:text-white max-w-[600px]"
+      >
+        {h1}
+      </h1>
 
-            <h2
-                class="text-xl md:text-2xl max-w-2xl mx-auto leading-relaxed transition-colors duration-500 text-gray-700 dark:text-gray-300"
-            >
-                {h2}
-            </h2>
+      <h2
+        class="text-xl md:text-2xl max-w-2xl mx-auto leading-relaxed transition-colors duration-500 text-gray-700 dark:text-gray-300"
+      >
+        {h2}
+      </h2>
 
-            <div
-                class="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8"
-            >
-                <a
-                    href={primaryButton.path}
-                    class="px-8 py-4 text-lg rounded-md transition-all duration-300 bg-black text-white hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200"
-                >
-                    {primaryButton.label}
-                </a>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
+        <a
+          href={primaryButton.path}
+          class="px-8 py-4 text-lg rounded-md transition-all duration-300 bg-black text-white hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200"
+        >
+          {primaryButton.label}
+        </a>
 
-                <a
-                    href={secondaryButton.path}
-                    class="px-8 py-4 text-lg rounded-md border transition-all duration-300 border-black text-black hover:bg-black hover:text-white dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-black"
-                >
-                    {secondaryButton.label}
-                </a>
-            </div>
-        </div>
+        <a
+          href={secondaryButton.path}
+          class="px-8 py-4 text-lg rounded-md border transition-all duration-300 border-black text-black hover:bg-black hover:text-white dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-black"
+        >
+          {secondaryButton.label}
+        </a>
+      </div>
     </div>
+  </div>
 </div>
 
 <script>
-    interface Particle {
-        x: number;
-        y: number;
-        vx: number;
-        vy: number;
-        radius: number;
+  interface Particle {
+    x: number;
+    y: number;
+    vx: number;
+    vy: number;
+    radius: number;
+  }
+
+  class AnimatedHero {
+    private canvas: HTMLCanvasElement;
+    private ctx: CanvasRenderingContext2D;
+    private particles: Particle[] = [];
+    private animationId: number | null = null;
+    private isDark: boolean = false;
+
+    constructor() {
+      this.canvas = document.getElementById('particles-canvas') as HTMLCanvasElement;
+      this.ctx = this.canvas.getContext('2d')!;
+
+      document.documentElement.addEventListener('click', () => {
+        this.isDark = document.documentElement.classList.contains('dark');
+      });
+
+      this.isDark = document.documentElement.classList.contains('dark');
+
+      this.init();
+      this.setupEventListeners();
+      this.animate();
     }
 
-    class AnimatedHero {
-        private canvas: HTMLCanvasElement;
-        private ctx: CanvasRenderingContext2D;
-        private particles: Particle[] = [];
-        private animationId: number | null = null;
-        private isDark: boolean = false;
-
-        constructor() {
-            this.canvas = document.getElementById(
-                "particles-canvas",
-            ) as HTMLCanvasElement;
-            this.ctx = this.canvas.getContext("2d")!;
-
-            document.documentElement.addEventListener("click", () => {
-                this.isDark =
-                    document.documentElement.classList.contains("dark");
-            });
-
-            this.isDark = document.documentElement.classList.contains("dark");
-
-            this.init();
-            this.setupEventListeners();
-            this.animate();
-        }
-
-        private init() {
-            this.resizeCanvas();
-            this.createParticles();
-        }
-
-        private createParticles() {
-            const particleCount = 50;
-            this.particles = [];
-
-            for (let i = 0; i < particleCount; i++) {
-                this.particles.push({
-                    x: Math.random() * this.canvas.width,
-                    y: Math.random() * this.canvas.height,
-                    vx: (Math.random() - 0.5) * 2,
-                    vy: (Math.random() - 0.5) * 2,
-                    radius: Math.random() * 3 + 2,
-                });
-            }
-        }
-
-        private resizeCanvas() {
-            this.canvas.width = window.innerWidth;
-            this.canvas.height = window.innerHeight;
-        }
-
-        private setupEventListeners() {
-            window.addEventListener("resize", () => {
-                this.resizeCanvas();
-                this.createParticles();
-            });
-        }
-
-        private animate = () => {
-            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
-            this.particles.forEach((particle, i) => {
-                particle.x += particle.vx;
-                particle.y += particle.vy;
-
-                if (
-                    particle.x <= particle.radius ||
-                    particle.x >= this.canvas.width - particle.radius
-                ) {
-                    particle.vx *= -1;
-                }
-                if (
-                    particle.y <= particle.radius ||
-                    particle.y >= this.canvas.height - particle.radius
-                ) {
-                    particle.vy *= -1;
-                }
-
-                particle.x = Math.max(
-                    particle.radius,
-                    Math.min(this.canvas.width - particle.radius, particle.x),
-                );
-                particle.y = Math.max(
-                    particle.radius,
-                    Math.min(this.canvas.height - particle.radius, particle.y),
-                );
-
-                this.ctx.beginPath();
-                this.ctx.arc(
-                    particle.x,
-                    particle.y,
-                    particle.radius,
-                    0,
-                    Math.PI * 2,
-                );
-                this.ctx.fillStyle = this.isDark ? "#ffffff" : "#000000";
-                this.ctx.fill();
-
-                this.particles.slice(i + 1).forEach((otherParticle) => {
-                    const dx = particle.x - otherParticle.x;
-                    const dy = particle.y - otherParticle.y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
-
-                    if (distance < 100) {
-                        this.ctx.beginPath();
-                        this.ctx.moveTo(particle.x, particle.y);
-                        this.ctx.lineTo(otherParticle.x, otherParticle.y);
-                        this.ctx.strokeStyle = this.isDark
-                           ? "rgba(255, 255, 255, " + (1 - distance / 100) + ")"
-                            : "rgba(0, 0, 0, " + (1 - distance / 100) + ")";
-                        this.ctx.lineWidth = 1;
-                        this.ctx.stroke();
-                    }
-                });
-            });
-
-            this.animationId = requestAnimationFrame(this.animate);
-        };
-
-        public destroy() {
-            if (this.animationId) {
-                cancelAnimationFrame(this.animationId);
-            }
-        }
+    private init() {
+      this.resizeCanvas();
+      this.createParticles();
     }
 
-    document.addEventListener("DOMContentLoaded", () => {
-        new AnimatedHero();
-    });
+    private createParticles() {
+      const particleCount = 50;
+      this.particles = [];
+
+      for (let i = 0; i < particleCount; i++) {
+        this.particles.push({
+          x: Math.random() * this.canvas.width,
+          y: Math.random() * this.canvas.height,
+          vx: (Math.random() - 0.5) * 2,
+          vy: (Math.random() - 0.5) * 2,
+          radius: Math.random() * 3 + 2,
+        });
+      }
+    }
+
+    private resizeCanvas() {
+      this.canvas.width = window.innerWidth;
+      this.canvas.height = window.innerHeight;
+    }
+
+    private setupEventListeners() {
+      window.addEventListener('resize', () => {
+        this.resizeCanvas();
+        this.createParticles();
+      });
+    }
+
+    private animate = () => {
+      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+      this.particles.forEach((particle, i) => {
+        particle.x += particle.vx;
+        particle.y += particle.vy;
+
+        if (particle.x <= particle.radius || particle.x >= this.canvas.width - particle.radius) {
+          particle.vx *= -1;
+        }
+        if (particle.y <= particle.radius || particle.y >= this.canvas.height - particle.radius) {
+          particle.vy *= -1;
+        }
+
+        particle.x = Math.max(
+          particle.radius,
+          Math.min(this.canvas.width - particle.radius, particle.x)
+        );
+        particle.y = Math.max(
+          particle.radius,
+          Math.min(this.canvas.height - particle.radius, particle.y)
+        );
+
+        this.ctx.beginPath();
+        this.ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+        this.ctx.fillStyle = this.isDark ? '#ffffff' : '#000000';
+        this.ctx.fill();
+
+        this.particles.slice(i + 1).forEach(otherParticle => {
+          const dx = particle.x - otherParticle.x;
+          const dy = particle.y - otherParticle.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < 100) {
+            this.ctx.beginPath();
+            this.ctx.moveTo(particle.x, particle.y);
+            this.ctx.lineTo(otherParticle.x, otherParticle.y);
+            this.ctx.strokeStyle = this.isDark
+              ? 'rgba(255, 255, 255, ' + (1 - distance / 100) + ')'
+              : 'rgba(0, 0, 0, ' + (1 - distance / 100) + ')';
+            this.ctx.lineWidth = 1;
+            this.ctx.stroke();
+          }
+        });
+      });
+
+      this.animationId = requestAnimationFrame(this.animate);
+    };
+
+    public destroy() {
+      if (this.animationId) {
+        cancelAnimationFrame(this.animationId);
+      }
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    new AnimatedHero();
+  });
 </script>

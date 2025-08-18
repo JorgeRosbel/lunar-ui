@@ -1,59 +1,63 @@
 ---
-import { Image } from "astro:assets";
+import { Image } from 'astro:assets';
 
 export interface IProjectCard {
-    title:string;
-    label?:string;
-    description:string;
-    image: { metadata: ImageMetadata; alt: string };
+  title: string;
+  label?: string;
+  description: string;
+  image: { metadata: ImageMetadata; alt: string };
 }
 
 export interface IProjectSection {
-    h1:string;
-    h2:string;
-    cards: IProjectCard[]
+  h1: string;
+  h2: string;
+  cards: IProjectCard[];
 }
 
 const { h1, h2, cards } = Astro.props as IProjectSection;
 ---
 
 <section class="w-full flex flex-col items-center justify-center gap-2 px-4">
-    <h2 class="text-3xl font-semibold text-black dark:text-white">{h1}</h2>
-    <h3 class="text-[1.2rem] text-black/80 dark:text-white/80 max-w-[700px] text-center">
-       {h2}
-    </h3>
-    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 px-4 gap-8 w-full max-w-[1200px] my-5">
-        {
-            cards.map(card =>
-                <article class="min-h-[500px] rounded-xl border-[2px] border-black/20 dark:border-white/25 dark:bg-white/3 transition-all duration-200
+  <h2 class="text-3xl font-semibold text-black dark:text-white">{h1}</h2>
+  <h3 class="text-[1.2rem] text-black/80 dark:text-white/80 max-w-[700px] text-center">
+    {h2}
+  </h3>
+  <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 px-4 gap-8 w-full max-w-[1200px] my-5">
+    {
+      cards.map(card => (
+        <article
+          class="min-h-[500px] rounded-xl border-[2px] border-black/20 dark:border-white/25 dark:bg-white/3 transition-all duration-200
                 hover:border-black/80 dark:hover:border-white/80 group bg-black/3 hover:shadow-[2px_3px_20px_rgba(0,0,0,0.3)]
-                        dark:hover:shadow-[2px_3px_20px_rgba(255,255,255,0.3)]">
-                   <div class="min-h-[60%] w-full overflow-hidden flex items-center justify-center relative">
-                        <Image
-                            class="w-full h-full object-cover group-hover:scale-110 transition-all duration-400"
-                            src={card.image.metadata}
-                            alt={card.image.alt}
-                            width={500}
-                            height={card.image.metadata.height}
-                            format="webp"
-                            quality={80}
-                            loading="lazy"
-                            decoding="async"
-                        />
-                        {
-                            card.label &&
-                            <div class="absolute inset-0 bg-black/30 w-full h-full z-20 p-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 flex items-center justify-center">
-                                <span class="text-white font-semibold bg-white/15 py-1 px-4 rounded-full text-[0.8rem]">{card.label}</span>
-                            </div>
-                        }
-                    </div>
-                    <div class="w-full min-h-[40%] pb-3 px-4">
-                        <p class="text-2xl my-1 font-semibold text-black dark:text-white border-b pb-2 border-black/15 dark:border-white/15">{card.title}</p>
-                        <p class="text-black/70 dark:text-white/70 mt-3 text-[0.94rem]">{card.description}</p>
-                    </div>
-                </article>
-            )
-        }
-
-    </div>
+                        dark:hover:shadow-[2px_3px_20px_rgba(255,255,255,0.3)]"
+        >
+          <div class="min-h-[60%] w-full overflow-hidden flex items-center justify-center relative">
+            <Image
+              class="w-full h-full object-cover group-hover:scale-110 transition-all duration-400"
+              src={card.image.metadata}
+              alt={card.image.alt}
+              width={500}
+              height={card.image.metadata.height}
+              format="webp"
+              quality={80}
+              loading="lazy"
+              decoding="async"
+            />
+            {card.label && (
+              <div class="absolute inset-0 bg-black/30 w-full h-full z-20 p-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 flex items-center justify-center">
+                <span class="text-white font-semibold bg-white/15 py-1 px-4 rounded-full text-[0.8rem]">
+                  {card.label}
+                </span>
+              </div>
+            )}
+          </div>
+          <div class="w-full min-h-[40%] pb-3 px-4">
+            <p class="text-2xl my-1 font-semibold text-black dark:text-white border-b pb-2 border-black/15 dark:border-white/15">
+              {card.title}
+            </p>
+            <p class="text-black/70 dark:text-white/70 mt-3 text-[0.94rem]">{card.description}</p>
+          </div>
+        </article>
+      ))
+    }
+  </div>
 </section>

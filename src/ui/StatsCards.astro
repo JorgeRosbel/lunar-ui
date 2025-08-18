@@ -1,25 +1,25 @@
 ---
-type TCard = { value:string | number; text:string }
+type TCard = { value: string | number; text: string };
 
 interface ICardsProps {
-    data: TCard[];
-} 
+  data: TCard[];
+}
 
 const { data } = Astro.props as ICardsProps;
 ---
 
 <section class="w-full flex items-center justify-center">
-
-    <div class="grid grid-cols-1 md:grid-cols-3 w-full max-w-[1200px] gap-5 px-3">
-        {
-            data.map(item => 
-                <article class="flex flex-col gap-4 p-5 items-center justify-center rounded-[1em] border border-black/15 dark:border-white/10 min-h-40
-                transition-all duration-200 hover:shadow-[2px_3px_10px_rgba(0,0,0,0.3)] dark:hover:shadow-[2px_3px_10px_rgba(255,255,255,0.3)]">
-                    <span class="font-bold text-5xl text-black dark:text-white">{item.value}</span>
-                    <span class="text-black/80 dark:text-white/80 text-[1.2rem]">{item.text}</span>
-                </article>
-            )
-        }
-        
-    </div>
+  <div class="grid grid-cols-1 md:grid-cols-3 w-full max-w-[1200px] gap-5 px-3">
+    {
+      data.map(item => (
+        <article
+          class="flex flex-col gap-4 p-5 items-center justify-center rounded-[1em] border border-black/15 dark:border-white/10 min-h-40
+                transition-all duration-200 hover:shadow-[2px_3px_10px_rgba(0,0,0,0.3)] dark:hover:shadow-[2px_3px_10px_rgba(255,255,255,0.3)]"
+        >
+          <span class="font-bold text-5xl text-black dark:text-white">{item.value}</span>
+          <span class="text-black/80 dark:text-white/80 text-[1.2rem]">{item.text}</span>
+        </article>
+      ))
+    }
+  </div>
 </section>

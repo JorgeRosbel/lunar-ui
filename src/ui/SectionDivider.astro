@@ -1,43 +1,48 @@
 ---
-interface ISeparator{
-    variant: "gradient" | "dotted" | "diamond" | "orbital"
+interface ISeparator {
+  variant: 'gradient' | 'dotted' | 'diamond' | 'orbital';
 }
 
 const { variant } = Astro.props as ISeparator;
 ---
 
 <div class="w-full flex items-center justify-center py-3 px-4">
-    {
-        variant === "gradient" && 
-        <div class="w-full max-w-[1200px] 
+  {
+    variant === 'gradient' && (
+      <div
+        class="w-full max-w-[1200px] 
             h-[1px] bg-gradient-to-r from-white/20 via-black/80 to-white/20
-            dark:from-black/20 dark:via-white/80 dark:to-black/20 transition-all duration-200">
-        </div>
-    }
-    {
-        variant === "dotted" && 
-        <div class="w-full max-w-[1200px] flex justify-between items-center">
-            <div class="w-[43%] md:w-[46%] border-t border-black/30 dark:border-white/30"></div>
-            <div class="rounded-full bg-black/70 dark:bg-white/80 w-3 h-3"></div>
-            <div class="w-[43%] md:w-[46%] border-t border-black/30 dark:border-white/30"></div>
-        </div>
-    }
-    {
-        variant === "diamond" &&
-        <div class="w-full max-w-1/2 md:max-w-[500px] flex justify-between items-center">
-            <div class="w-[43%] md:w-[46%] border-t border-black/30 dark:border-white/30"></div>
-            <div class="rotate-45 bg-black/70 dark:bg-white/80 w-6 h-6"></div>
-            <div class="w-[43%] md:w-[46%] border-t border-black/30 dark:border-white/30"></div>
-        </div>
-    }
-    {
-        variant === "orbital" &&
-        <div class="w-full max-w-1/2 md:max-w-[400px] flex justify-between items-center">
-            <div class="rounded-full bg-black/70 dark:bg-white/80 w-2 h-2"></div>
-            <div class="w-[32%] md:w-[40%] border-t border-black/30 dark:border-white/30"></div>
-            <div class="rounded-full bg-black/70 dark:bg-white/80 w-4 h-4"></div>
-            <div class="w-[32%] md:w-[40%] border-t border-black/30 dark:border-white/30"></div>
-            <div class="rounded-full bg-black/70 dark:bg-white/80 w-2 h-2"></div>
-        </div>
-    }
+            dark:from-black/20 dark:via-white/80 dark:to-black/20 transition-all duration-200"
+      ></div>
+    )
+  }
+  {
+    variant === 'dotted' && (
+      <div class="w-full max-w-[1200px] flex justify-between items-center">
+        <div class="w-[43%] md:w-[46%] border-t border-black/30 dark:border-white/30" />
+        <div class="rounded-full bg-black/70 dark:bg-white/80 w-3 h-3" />
+        <div class="w-[43%] md:w-[46%] border-t border-black/30 dark:border-white/30" />
+      </div>
+    )
+  }
+  {
+    variant === 'diamond' && (
+      <div class="w-full max-w-1/2 md:max-w-[500px] flex justify-between items-center">
+        <div class="w-[43%] md:w-[46%] border-t border-black/30 dark:border-white/30" />
+        <div class="rotate-45 bg-black/70 dark:bg-white/80 w-6 h-6" />
+        <div class="w-[43%] md:w-[46%] border-t border-black/30 dark:border-white/30" />
+      </div>
+    )
+  }
+  {
+    variant === 'orbital' && (
+      <div class="w-full max-w-1/2 md:max-w-[400px] flex justify-between items-center">
+        <div class="rounded-full bg-black/70 dark:bg-white/80 w-2 h-2" />
+        <div class="w-[32%] md:w-[40%] border-t border-black/30 dark:border-white/30" />
+        <div class="rounded-full bg-black/70 dark:bg-white/80 w-4 h-4" />
+        <div class="w-[32%] md:w-[40%] border-t border-black/30 dark:border-white/30" />
+        <div class="rounded-full bg-black/70 dark:bg-white/80 w-2 h-2" />
+      </div>
+    )
+  }
 </div>
