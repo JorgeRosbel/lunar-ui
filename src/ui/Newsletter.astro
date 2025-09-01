@@ -1,0 +1,104 @@
+---
+interface NewsketterProps {
+  title: string;
+  description: string;
+  buttonText: string;
+}
+const { title, description, buttonText } = Astro.props as NewsketterProps;
+---
+
+<section class="w-full flex flex-col items-center justify-center py-3 gap-3">
+  <h2 class="text-2xl md:text-4xl font-bold text-black dark:text-white">{title}</h2>
+  <h3 class="text-[1.2rem] text-black/80 dark:text-white/80 max-w-[700px] text-center px-5 md:px-2">
+    {description}
+  </h3>
+
+  <form
+    id="subscribe-form"
+    class="border border-black dark:border-white/29 dark:bg-white/3 min-w-[340px] overflow-hidden rounded-2xl flex my-4"
+  >
+    <input
+      required
+      class="outline-none text-black dark:text-white py-3 px-5 w-[65%] placeholder:text-black/40 dark:placeholder:text-white/40
+        transition-all duration-200"
+      placeholder="Enter you email"
+      type="email"
+    />
+    <button
+      disabled
+      class="bg-black disabled:cursor-not-allowed text-white dark:bg-white dark:text-black flex-1 cursor-pointer font-semibold"
+      >{buttonText}</button
+    >
+  </form>
+  <span class="text-red-600 uppercase font-semibold" id="news-form-error"></span>
+</section>
+
+<script>
+  const form = document.getElementById('subscribe-form');
+  const submitBtn = document.querySelector('#subscribe-form button') as HTMLButtonElement;
+  const formInput = document.querySelector('#subscribe-form input') as HTMLInputElement;
+  const errorSpan = document.getElementById('news-form-error') as HTMLSpanElement;
+
+  if (form && submitBtn && formInput) {
+    formInput.addEventListener('input', (e: Event) => {
+      const target = e.target as HTMLInputElement;
+      const { value } = target;
+
+      if (value.length > 0) {
+        submitBtn.disabled = false;
+      } else {
+        submitBtn.disabled = true;
+      }
+    });
+
+    form.onsubmit = async (e: Event) => {
+      e.preventDefault();
+      const email = formInput.value.trim();
+
+      if (email.length === 0) {
+        errorSpan.textContent = 'Email is required';
+        return;
+      }
+      try {
+        const response = await fetch('/api', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email }),
+        });
+
+        errorSpan.textContent = '';
+
+        if (!response.ok) {
+          const { status } = response;
+          if (status === 401) {
+            throw new Error('');
+          }
+
+          if (status === 400) {
+            throw new Error('Invalid request. Please check your data and try again.');
+          }
+          if (status === 401) {
+            throw new Error('Unauthorized. Please log in before subscribing.');
+          }
+          if (status === 403) {
+            throw new Error("Access denied. You don't have permission to subscribe.");
+          }
+          if (status === 404) {
+            throw new Error('Service not found. Please try again later.');
+          }
+          if (status === 500) {
+            throw new Error('Internal server error. Please try again later.');
+          } else {
+            throw new Error(`Unknown error (status ${status}). Please try again.`);
+          }
+        }
+      } catch (error) {
+        if (error instanceof Error) {
+          errorSpan.textContent = error.message;
+        } else {
+          errorSpan.textContent = 'An unexpected error occurred. Please try again.';
+        }
+      }
+    };
+  }
+</script>

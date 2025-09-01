@@ -24,7 +24,7 @@ export const add = async () => {
       process.exit(1);
     }
 
-    const dir = join(process.cwd(), 'src/.generated');
+    const dir = join(process.cwd(), 'src/generated');
 
     if (!fs.existsSync(dir)) {
       await mkdir(dir);
